@@ -59,6 +59,9 @@ module.exports.getAccessToken = async event => {
     .then(token => {
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         body: JSON.stringify(token),
       };
     })
@@ -66,12 +69,15 @@ module.exports.getAccessToken = async event => {
       console.error(err);
       return {
         statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         body: JSON.stringify(err),
       };
     });
 };
 
-module.exports.getCalendarEvents = event => {
+module.exports.getCalendarEvents = async event => {
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
     client_secret,
