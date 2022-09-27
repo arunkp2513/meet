@@ -14,7 +14,6 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test('default number of events is 32', () => {
-    let NumberOfEventsWrapper = shallow(<NumberOfEvents />);
     expect(NumberOfEventsWrapper.find('.render-number').prop('value')).toBe(32);
   });
 
