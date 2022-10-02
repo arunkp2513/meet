@@ -1,37 +1,52 @@
 import React, { Component } from 'react';
 
-class Event extends Component {
-  toggleDetails = () => {
-    let details = this.state.show ? 'view-details' : 'Hide-details';
-    this.setState({ buttonText: details, show: !this.state.show });
+export class Event extends Component {
+  toggleEventDetails = () => {
+    this.setState({ show: !this.state.show });
   };
 
-  constructor() {
-    super();
-    this.state = {
-      show: false,
-      buttonText: 'View details',
-    };
-  }
+  state = { show: false };
 
   render() {
     const { event } = this.props;
-    const { show, buttonText } = this.state;
     return (
-      <div className="event">
-        <h3 className="event-title">{event.summary}</h3>
-
-        <div className="event-info">
-          <div className="event-info_location">{event.location}</div>
-          <div className="event-info_date">
-            {event.start.dateTime}, {event.start.timeZone}
-          </div>
+      <>
+        <div className="event">
+          <h1 className="event-summary-title">{event.summary}</h1>
+          <p className="event-info">
+            {event.start.dateTime} {event.start.timeZone} {event.location}
+          </p>
+          {this.state.show && (
+            <>
+              <h2 className="event-about-title">About event:</h2>
+              <a
+                href={event.htmlLink}
+                target="_blank"
+                rel="noreferrer"
+                className="event-htmlLink"
+              >
+                See details on Google Calendar
+              </a>
+              <p className="event-description">{event.description}</p>
+            </>
+          )}
+          {!this.state.show ? (
+            <button
+              className="event-showDetails-btn"
+              onClick={this.toggleEventDetails}
+            >
+              Show Details
+            </button>
+          ) : (
+            <button
+              className="event-hideDetails-btn"
+              onClick={this.toggleEventDetails}
+            >
+              Hide Details
+            </button>
+          )}
         </div>
-        {show && <div className="event-details">{event.description} </div>}
-        <button className="details-button" onclick={this.toggleDetails}>
-          {buttonText}
-        </button>
-      </div>
+      </>
     );
   }
 }
