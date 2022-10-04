@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { shallow } from 'enzyme';
 
 import { ErrorAlert } from './Alert';
 
