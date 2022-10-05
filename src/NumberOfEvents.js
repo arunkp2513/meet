@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
   state = {
     renderNumber: 1,
+    errorText: '',
   };
   handleInputChanged = event => {
     let newValue = parseInt(event.target.value);
@@ -39,6 +41,9 @@ class NumberOfEvents extends Component {
           onChange={this.handleInputChanged}
           value={this.state.renderNumber}
         ></input>
+        <div>
+          <ErrorAlert text={this.state.infoText} />
+        </div>
       </div>
     );
   }
