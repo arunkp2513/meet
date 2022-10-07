@@ -42,7 +42,7 @@ class NumberOfEvents extends Component {
           value={this.state.renderNumber}
         ></input>
         <div>
-          <ErrorAlert text={this.state.infoText} />
+          <ErrorAlert text={this.state.errorText} />
         </div>
       </div>
     );
