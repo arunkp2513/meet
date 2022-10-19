@@ -31,26 +31,29 @@ class CitySearch extends Component {
   handleItemClicked = suggestion => {
     this.setState({
       query: suggestion,
+      suggestions: [],
       showSuggestions: false,
+      infoText: '',
     });
-
     this.props.updateEvents(suggestion);
   };
 
   render() {
     return (
       <div className="CitySearch">
-        <p>Enter city you want search events:</p>
         <InfoAlert text={this.state.infoText} />
-        <input
-          type="text"
-          className="city"
-          value={this.state.query}
-          onChange={this.handleInputChanged}
-          onFocus={() => {
-            this.setState({ showSuggestions: true });
-          }}
-        />
+        <label>
+          Select Your Nearest City:
+          <input
+            type="text"
+            className="city"
+            value={this.state.query}
+            onChange={this.handleInputChanged}
+            onFocus={() => {
+              this.setState({ showSuggestions: true });
+            }}
+          />
+        </label>
         <ul
           className="suggestions"
           style={this.state.showSuggestions ? {} : { display: 'none' }}
